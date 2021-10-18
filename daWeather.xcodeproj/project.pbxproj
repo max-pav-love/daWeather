@@ -22,6 +22,11 @@
 		150FAFEA2719C5DE00336403 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150FAFE92719C5DE00336403 /* Mapper.swift */; };
 		15B13C87271A1DB2006E95A0 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B13C85271A1DB2006E95A0 /* HourCell.swift */; };
 		15B13C88271A1DB3006E95A0 /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B13C86271A1DB2006E95A0 /* HourCell.xib */; };
+		15FA812B271DB87F007433AF /* AdditionalInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA812A271DB87F007433AF /* AdditionalInfoModel.swift */; };
+		15FA812E271DC022007433AF /* AdditionalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA812C271DC022007433AF /* AdditionalCell.swift */; };
+		15FA812F271DC022007433AF /* AdditionalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FA812D271DC022007433AF /* AdditionalCell.xib */; };
+		15FA8137271DCC7F007433AF /* HourTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA8135271DCC7F007433AF /* HourTableCell.swift */; };
+		15FA8138271DCC7F007433AF /* HourTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FA8136271DCC7F007433AF /* HourTableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,11 @@
 		150FAFE92719C5DE00336403 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		15B13C85271A1DB2006E95A0 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		15B13C86271A1DB2006E95A0 /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
+		15FA812A271DB87F007433AF /* AdditionalInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoModel.swift; sourceTree = "<group>"; };
+		15FA812C271DC022007433AF /* AdditionalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCell.swift; sourceTree = "<group>"; };
+		15FA812D271DC022007433AF /* AdditionalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalCell.xib; sourceTree = "<group>"; };
+		15FA8135271DCC7F007433AF /* HourTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTableCell.swift; sourceTree = "<group>"; };
+		15FA8136271DCC7F007433AF /* HourTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,7 @@
 		150FAFD72719B56C00336403 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				15FA8129271DB86B007433AF /* AdditionalInfoModel */,
 				150FAFDB2719B5E400336403 /* ForecastWeatherModel */,
 				150FAFDA2719B5C300336403 /* DailyWeatherModel */,
 			);
@@ -175,6 +186,7 @@
 		15B13C83271A1D7C006E95A0 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				15FA8124271DAEC2007433AF /* TableViewCell */,
 				15B13C84271A1D86006E95A0 /* HourCollectionViewCell */,
 			);
 			path = Design;
@@ -185,8 +197,35 @@
 			children = (
 				15B13C85271A1DB2006E95A0 /* HourCell.swift */,
 				15B13C86271A1DB2006E95A0 /* HourCell.xib */,
+				15FA8130271DCC3B007433AF /* HourTableViewCell */,
 			);
 			path = HourCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		15FA8124271DAEC2007433AF /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				15FA812C271DC022007433AF /* AdditionalCell.swift */,
+				15FA812D271DC022007433AF /* AdditionalCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		15FA8129271DB86B007433AF /* AdditionalInfoModel */ = {
+			isa = PBXGroup;
+			children = (
+				15FA812A271DB87F007433AF /* AdditionalInfoModel.swift */,
+			);
+			path = AdditionalInfoModel;
+			sourceTree = "<group>";
+		};
+		15FA8130271DCC3B007433AF /* HourTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				15FA8135271DCC7F007433AF /* HourTableCell.swift */,
+				15FA8136271DCC7F007433AF /* HourTableCell.xib */,
+			);
+			path = HourTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +292,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FA8138271DCC7F007433AF /* HourTableCell.xib in Resources */,
 				150FAFCC2719B18400336403 /* LaunchScreen.storyboard in Resources */,
+				15FA812F271DC022007433AF /* AdditionalCell.xib in Resources */,
 				15B13C88271A1DB3006E95A0 /* HourCell.xib in Resources */,
 				150FAFC92719B18400336403 /* Assets.xcassets in Resources */,
 				150FAFC72719B17C00336403 /* Main.storyboard in Resources */,
@@ -271,12 +312,15 @@
 				150FAFE02719B73900336403 /* ForecastWeatherModel.swift in Sources */,
 				150FAFDD2719B62500336403 /* OpenWeatherData.swift in Sources */,
 				150FAFE22719B74500336403 /* DailyWeatherModel.swift in Sources */,
+				15FA812B271DB87F007433AF /* AdditionalInfoModel.swift in Sources */,
 				150FAFEA2719C5DE00336403 /* Mapper.swift in Sources */,
 				150FAFC42719B17C00336403 /* WeatherViewController.swift in Sources */,
+				15FA812E271DC022007433AF /* AdditionalCell.swift in Sources */,
 				150FAFC02719B17C00336403 /* AppDelegate.swift in Sources */,
 				150FAFC22719B17C00336403 /* SceneDelegate.swift in Sources */,
 				150FAFE42719B88E00336403 /* Worker.swift in Sources */,
 				15B13C87271A1DB2006E95A0 /* HourCell.swift in Sources */,
+				15FA8137271DCC7F007433AF /* HourTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,16 +20,16 @@ class WeatherViewController: UIViewController {
     @IBOutlet private weak var mainWeatherIcon: UIImageView?
     @IBOutlet private weak var minMaxLabel: UILabel?
     
-    @IBOutlet private weak var collection: UICollectionView?
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
     
-    @IBOutlet private weak var cellTitleLabel: UILabel?
-    @IBOutlet private weak var cellImageView: UIImageView?
-    @IBOutlet private weak var cellDetailLabel: UILabel?
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var table: UITableView!
     
     var networkManager = Network()
     var locationManager = CLLocationManager()
     var mapper = Mapper()
+    
+    let additonal: [AdditionalInfo] = [AdditionalInfo(icon: "staroflife", title: "Ощущается как", description: "+14°C"), AdditionalInfo(icon: "wind", title: "Скорость ветра", description: "13 м/с"), AdditionalInfo(icon: "eye", title: "Видимость", description: "14 км")]
     
     // MARK: - ViewController lifecycle
     
@@ -39,7 +39,8 @@ class WeatherViewController: UIViewController {
         mainTemperatureLable?.textColor = .gray
         hideElements()
         
-        collection?.register(HourCell.nib(), forCellWithReuseIdentifier: HourCell.identifier)
+        table.register(HourTableCell.nib(), forCellReuseIdentifier: HourTableCell.identifier)
+        table.register(AdditionalCell.nib(), forCellReuseIdentifier: AdditionalCell.identifier)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -56,9 +57,6 @@ class WeatherViewController: UIViewController {
         mainDescriptionLabel?.text = weather.description
         mainWeatherIcon?.image = UIImage(systemName: weather.id)
         minMaxLabel?.text = weather.minMaxTemp
-        
-        cellDetailLabel?.text = "\(weather.description)"
-        
         showElements()
     }
     
@@ -68,27 +66,34 @@ class WeatherViewController: UIViewController {
     
     // MARK: - Configure UICollectionView
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 128, height: 128)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourCell", for: indexPath) as! HourCell
-        return cell
-    }
     
     // MARK: - UITableView Methods
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        return additonal.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 140
+        }
+        return 60
+    }
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "feelsLike", for: indexPath)
+        if indexPath.section == 0 {
+            let collectionCell = tableView.dequeueReusableCell(withIdentifier: HourTableCell.identifier, for: indexPath) as! HourTableCell
+            return collectionCell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalCell.identifier, for: indexPath) as! AdditionalCell
+        cell.configure(data: additonal[indexPath.row])
         return cell
     }
     
@@ -101,6 +106,8 @@ class WeatherViewController: UIViewController {
             networkManager.fetchLocationForUrl(lon: lon, lat: lat)
             locationManager.stopUpdatingLocation()
             print("\(lon),\(lat)")
+            table.reloadData()
+
         }
     }
     
@@ -121,11 +128,13 @@ class WeatherViewController: UIViewController {
     }
     
     func hideElements() {
+        table.isHidden = true
+        table.backgroundColor = .clear
         cityLabel?.isHidden = true
         mainDescriptionLabel?.isHidden = true
         mainWeatherIcon?.isHidden = true
         minMaxLabel?.isHidden = true
-        collection?.isHidden = true
+        backgroundImage.isHidden = true
     }
     
     func showElements() {
@@ -135,12 +144,13 @@ class WeatherViewController: UIViewController {
         mainWeatherIcon?.isHidden = false
         minMaxLabel?.isHidden = false
         mainTemperatureLable?.textColor = .black
-        collection?.isHidden = false
+        table.isHidden = false
+        backgroundImage.isHidden = false
     }
 }
 
 //MARK: - Extensions
 
-extension WeatherViewController: WeatherManagerDelegate, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate {
+extension WeatherViewController: WeatherManagerDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 }
 

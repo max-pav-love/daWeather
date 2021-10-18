@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - PUT YOUR API-KEY HERE
 
-private let apiKey = "YOUR_API_KEY_HERE"
+private let apiKey = "de9b38761be0a1d3dbd2eb8acbdd75c1"
 
 // MARK: - OpenWeather URLs
 

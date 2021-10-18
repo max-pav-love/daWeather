@@ -63,27 +63,28 @@ final class Mapper {
     private func getIconSystemName(by id: Int) -> String {
         switch id {
         case 200...202, 230...232:
-            return "cloud.bolt.rain"
+            return "cloud.bolt.rain.fill"
         case 210...229:
-            return "cloud.bolt"
+            return "cloud.bolt.fill"
         case 300...321:
-            return "cloud.drizzle"
+            return "cloud.drizzle.fill"
         case 500...501:
-            return "cloud.rain"
+            return "cloud.rain.fill"
         case 502...531:
-            return "cloud.heavyrain"
+            return "cloud.heavyrain.fill"
         case 600...622:
-            return "cloud.snow"
+            return "cloud.snow.fill"
         case 701...781:
-            return "cloud.fog"
+            return "cloud.fog.fill"
         case 800:
-            return "sun.max"
+            return "sun.max.fill"
         case 801...804:
-            return "cloud.bolt"
+            return "cloud.bolt.fill"
         default:
-            return "cloud"
+            return "cloud.fill"
         }
     }
+    
 }
 
 extension String {
