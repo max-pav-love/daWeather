@@ -7,8 +7,12 @@
 
 import Foundation
 
-let apiKey = "(YOUR_OPENWEATHERMAP_TOKEN_HERE)"
+// MARK: - PUT YOUR API-KEY HERE
 
-let dailyUrl = "https://api.openweathermap.org/data/2.5/weather?&q=london&appid=\(apiKey)&units=metric&lang=ru"
+private let apiKey = "YOUR_API_KEY_HERE"
 
-let forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&q=london&appid=\(apiKey)&units=metric&lang=ru"
+// MARK: - OpenWeather URLs
+
+let dailyUrl = "https://api.openweathermap.org/data/2.5/weather?&appid=\(apiKey)&units=metric&lang=ru"
+
+let forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&appid=\(apiKey)&units=metric&lang=ru"

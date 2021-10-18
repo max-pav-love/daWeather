@@ -8,13 +8,15 @@
 import Foundation
 
 struct DailyWeatherModel {
-    
     let cityName: String
-    let temperature: Double
+    let temperature: String
     let description: String
-    let maxTemp: Double
-    let minTemp: Double
-    let feelsLike: Double
-    let humidity: Double
-    
+    let maxTemp: String
+    let minTemp: String
+    let feelsLike: String
+    let humidity: String
+    let id: String
+    var minMaxTemp: String {
+        return "Макс. \(maxTemp), мин. \(minTemp)"
+    }
 }

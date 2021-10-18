@@ -52,6 +52,7 @@ struct Weather: Codable {
 // MARK: - DAILY WEATHER DATA
 struct DailyWeatherMain: Codable {
     let temp: Double
+    let feels_like: Double
     let humidity: Double
     let temp_min: Double
     let temp_max: Double
@@ -60,6 +61,7 @@ struct DailyWeatherMain: Codable {
 struct DailyWeather: Codable {
     let main: DailyWeatherMain
     let name: String
+    let id: Int
     let weather: [WeatherDescription]
 }
 

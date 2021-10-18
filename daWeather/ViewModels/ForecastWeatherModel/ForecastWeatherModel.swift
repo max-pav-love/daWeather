@@ -8,11 +8,7 @@
 import Foundation
 
 struct ForecastWeatherModel {
-    
-    let conditionId: Int
-    let maxTemp: Double
-    let minTemp: Double
-    let date: Double
-    let temp: Double
-    
+    let conditionId: String
+    let date: String
+    let temp: String
 }
