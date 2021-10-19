@@ -24,10 +24,10 @@ class HourCell: UICollectionViewCell {
         return UINib(nibName: "HourCell", bundle: nil)
     }
     
-    func configureCell(with hour: ForecastWeatherModel) {
-        self.timeLabel?.text = hour.date
-        self.tempLabel?.text = hour.temp
-        self.weatherIcon?.image = UIImage(systemName: hour.conditionId)
+    func configureCell(with hour: ForecastWeatherModel?) {
+        self.timeLabel?.text = "\(hour!.date + ":00")"
+        self.tempLabel?.text = hour?.temp
+        self.weatherIcon?.image = UIImage(systemName: hour?.conditionId ?? "cloud.fill")
     }
 
 }

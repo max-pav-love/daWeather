@@ -29,5 +29,4 @@ class AdditionalCell: UITableViewCell {
             self.cellTitle.text = data.title
     }
 
-    
 }

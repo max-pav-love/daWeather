@@ -11,6 +11,7 @@ import Alamofire
 protocol WeatherManagerDelegate {
     func didUpdateWeather(weather: DailyWeatherModel)
     func didUpdateForecast(weather: [ForecastWeatherModel])
+    func showRetryAlert(error: String)
 }
 
 final class Network {
@@ -39,6 +40,7 @@ final class Network {
                 }
             case .failure(let error):
                 print(error)
+                self?.delegate?.showRetryAlert(error: error.localizedDescription)
             }
         }
     }

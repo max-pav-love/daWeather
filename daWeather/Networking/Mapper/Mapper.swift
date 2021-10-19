@@ -7,40 +7,36 @@
 
 import Foundation
 
+
+
 final class Mapper {
     
-    var hours: [ForecastWeatherModel] = []
-    
-    var hour = ForecastWeatherModel(conditionId: "", date: "", temp: "")
-    
-    var day = DailyWeatherModel(cityName: "", temperature: "",
-                                description: "", maxTemp: "",
-                                minTemp: "", feelsLike: "",
-                                humidity: "", id: "")
-    
     func mapDay(weather: DailyWeather) -> DailyWeatherModel {
-        day = DailyWeatherModel(cityName: weather.name,
-                                temperature: tempPresenter(for:weather.main.temp),
-                                description: weather.weather[0].description.capitalizingFirstLetter(),
-                                maxTemp: tempPresenter(for: weather.main.temp_max),
-                                minTemp: tempPresenter(for: weather.main.temp_min),
-                                feelsLike: weather.main.feels_like.description,
-                                humidity: weather.main.humidity.description,
-                                id: getIconSystemName(by: weather.id))
-        return day
+        DailyWeatherModel(cityName: weather.name,
+                          temperature: tempPresenter(for:weather.main.temp),
+                          description: weather.weather[0].description.capitalizingFirstLetter(),
+                          maxTemp: tempPresenter(for: weather.main.temp_max),
+                          minTemp: tempPresenter(for: weather.main.temp_min),
+                          feelsLike: weather.main.feels_like.description,
+                          humidity: weather.main.humidity.description,
+                          id: getIconSystemName(by: weather.id))
     }
     
     func map(weather: Forecast) -> [ForecastWeatherModel] {
         
+        var hours: [ForecastWeatherModel] = []
         
         for i in weather.list {
+            if hours.count >= 7 {
+                return hours
+            }
             let temp = i.main.temp
             let date = i.dt
             let id = i.weather[0].id
             
-            hour = ForecastWeatherModel(conditionId: getIconSystemName(by: id),
-                                        date: getDateTime(date: Date(timeIntervalSince1970: date)),
-                                        temp: tempPresenter(for: temp))
+            let hour = ForecastWeatherModel(conditionId: getIconSystemName(by: id),
+                                            date: getDateTime(date: Date(timeIntervalSince1970: date)),
+                                            temp: tempPresenter(for: temp))
             hours.append(hour)
         }
         return hours

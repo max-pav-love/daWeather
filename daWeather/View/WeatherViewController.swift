@@ -11,70 +11,95 @@ import CoreLocation
 
 class WeatherViewController: UIViewController {
     
-    
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var cityLabel: UILabel?
-    @IBOutlet private weak var mainTemperatureLable: UILabel?
-    @IBOutlet private weak var mainDescriptionLabel: UILabel?
-    @IBOutlet private weak var mainWeatherIcon: UIImageView?
-    @IBOutlet private weak var minMaxLabel: UILabel?
-    
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
-    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var table: UITableView!
     
     var networkManager = Network()
     var locationManager = CLLocationManager()
-    var mapper = Mapper()
+    var viewModel = ViewModel()
     
-    let additonal: [AdditionalInfo] = [AdditionalInfo(icon: "staroflife", title: "Ощущается как", description: "+14°C"), AdditionalInfo(icon: "wind", title: "Скорость ветра", description: "13 м/с"), AdditionalInfo(icon: "eye", title: "Видимость", description: "14 км")]
+    let additonal: [AdditionalInfo] = [AdditionalInfo(icon: "staroflife",
+                                                      title: "Ощущается как",
+                                                      description: "+14°C"),
+                                       AdditionalInfo(icon: "wind",
+                                                      title: "Скорость ветра",
+                                                      description: "13 м/с"),
+                                       AdditionalInfo(icon: "eye",
+                                                      title: "Видимость",
+                                                      description: "14 км"),
+                                       AdditionalInfo(icon: "line.3.horizontal.decrease.circle",
+                                                      title: "Давление",
+                                                      description: "11 k/Pa"),
+                                       
+                                       AdditionalInfo(icon: "drop",
+                                                      title: "Влажность",
+                                                      description: "67%")]
     
     // MARK: - ViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainTemperatureLable?.textColor = .gray
         hideElements()
         
+        table.sectionHeaderTopPadding = 0
+        
+        table.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifier)
         table.register(HourTableCell.nib(), forCellReuseIdentifier: HourTableCell.identifier)
         table.register(AdditionalCell.nib(), forCellReuseIdentifier: AdditionalCell.identifier)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
         networkManager.delegate = self
-        
     }
     
     // MARK: - Network Manager Delegates
     
     func didUpdateWeather(weather: DailyWeatherModel) {
-        cityLabel?.text = weather.cityName
-        mainTemperatureLable?.text = weather.temperature.description
-        mainDescriptionLabel?.text = weather.description
-        mainWeatherIcon?.image = UIImage(systemName: weather.id)
-        minMaxLabel?.text = weather.minMaxTemp
+        viewModel.dailyModel = weather
+        table.reloadData()
         showElements()
     }
     
     func didUpdateForecast(weather: [ForecastWeatherModel]) {
-        
+        viewModel.forecastModel = weather
+        table.reloadData()
     }
     
-    // MARK: - Configure UICollectionView
+    func showRetryAlert(error: String) {
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: error,
+                                      preferredStyle: .alert)
+        let retryAction = UIAlertAction(title: "Повторить", style: .default) { [self] _ in
+            
+            guard
+                let lon = self.viewModel.location?.coordinate.longitude,
+                let lat = self.viewModel.location?.coordinate.latitude
+            else {
+                return
+            }
+            self.networkManager.fetchLocationForUrl(lon: lon, lat: lat)
+        }
+        
+        alert.addAction(retryAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     
     // MARK: - UITableView Methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            return 1
+        } else if section == 1 {
             return 1
         }
         return additonal.count
@@ -82,14 +107,36 @@ class WeatherViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 140
+            return 460
+        } else if indexPath.section == 1 {
+            return 128
         }
         return 60
     }
-        
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return .leastNonzeroMagnitude
+        }
+        return tableView.sectionHeaderHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return .leastNonzeroMagnitude
+        }
+        return tableView.sectionHeaderHeight
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let mainCell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
+            mainCell.configureMain(data: viewModel.dailyModel)
+            return mainCell
+        }
+        else if indexPath.section == 1 {
             let collectionCell = tableView.dequeueReusableCell(withIdentifier: HourTableCell.identifier, for: indexPath) as! HourTableCell
+            collectionCell.configureCell(with: viewModel.forecastModel)
             return collectionCell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalCell.identifier, for: indexPath) as! AdditionalCell
@@ -101,13 +148,13 @@ class WeatherViewController: UIViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
+            viewModel.location = location
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             networkManager.fetchLocationForUrl(lon: lon, lat: lat)
             locationManager.stopUpdatingLocation()
             print("\(lon),\(lat)")
             table.reloadData()
-
         }
     }
     
@@ -127,26 +174,18 @@ class WeatherViewController: UIViewController {
         }
     }
     
+    // MARK: - UI Methods
+    
     func hideElements() {
         table.isHidden = true
-        table.backgroundColor = .clear
-        cityLabel?.isHidden = true
-        mainDescriptionLabel?.isHidden = true
-        mainWeatherIcon?.isHidden = true
-        minMaxLabel?.isHidden = true
-        backgroundImage.isHidden = true
     }
     
     func showElements() {
         activityIndicator?.stopAnimating()
-        cityLabel?.isHidden = false
-        mainDescriptionLabel?.isHidden = false
-        mainWeatherIcon?.isHidden = false
-        minMaxLabel?.isHidden = false
-        mainTemperatureLable?.textColor = .black
         table.isHidden = false
         backgroundImage.isHidden = false
     }
+    
 }
 
 //MARK: - Extensions
