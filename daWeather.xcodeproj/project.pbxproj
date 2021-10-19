@@ -22,7 +22,6 @@
 		150FAFEA2719C5DE00336403 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150FAFE92719C5DE00336403 /* Mapper.swift */; };
 		15B13C87271A1DB2006E95A0 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B13C85271A1DB2006E95A0 /* HourCell.swift */; };
 		15B13C88271A1DB3006E95A0 /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B13C86271A1DB2006E95A0 /* HourCell.xib */; };
-		15BC16BA271EB5D20007D043 /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC16B9271EB5D10007D043 /* UIAlert.swift */; };
 		15BC16BE271ED72A0007D043 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC16BC271ED72A0007D043 /* MainTableViewCell.swift */; };
 		15BC16BF271ED72A0007D043 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15BC16BD271ED72A0007D043 /* MainTableViewCell.xib */; };
 		15BC16C1271EEA700007D043 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC16C0271EEA700007D043 /* ViewModel.swift */; };
@@ -50,7 +49,6 @@
 		150FAFE92719C5DE00336403 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		15B13C85271A1DB2006E95A0 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		15B13C86271A1DB2006E95A0 /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
-		15BC16B9271EB5D10007D043 /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		15BC16BC271ED72A0007D043 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		15BC16BD271ED72A0007D043 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		15BC16C0271EEA700007D043 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		150FAFBE2719B17C00336403 /* daWeather */ = {
 			isa = PBXGroup;
 			children = (
-				15BC16B8271EB5B80007D043 /* UIAlert */,
 				15B13C83271A1D7C006E95A0 /* Design */,
 				15B13C812719F013006E95A0 /* View */,
 				150FAFD82719B58900336403 /* Storyboards */,
@@ -211,14 +208,6 @@
 				15FA8130271DCC3B007433AF /* HourTableViewCell */,
 			);
 			path = HourCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		15BC16B8271EB5B80007D043 /* UIAlert */ = {
-			isa = PBXGroup;
-			children = (
-				15BC16B9271EB5D10007D043 /* UIAlert.swift */,
-			);
-			path = UIAlert;
 			sourceTree = "<group>";
 		};
 		15BC16BB271ED7110007D043 /* MainTableViewCell */ = {
@@ -351,7 +340,6 @@
 				150FAFC22719B17C00336403 /* SceneDelegate.swift in Sources */,
 				150FAFE42719B88E00336403 /* Worker.swift in Sources */,
 				15B13C87271A1DB2006E95A0 /* HourCell.swift in Sources */,
-				15BC16BA271EB5D20007D043 /* UIAlert.swift in Sources */,
 				15FA8137271DCC7F007433AF /* HourTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNT5L4LY83;
@@ -527,6 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VNT5L4LY83;

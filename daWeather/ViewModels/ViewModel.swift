@@ -12,4 +12,5 @@ struct ViewModel {
     var dailyModel: DailyWeatherModel?
     var forecastModel: [ForecastWeatherModel]?
     var location: CLLocation?
+    var additionalInfoModel: [AdditionalInfo]?
 }

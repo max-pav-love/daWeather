@@ -12,6 +12,7 @@ protocol WeatherManagerDelegate {
     func didUpdateWeather(weather: DailyWeatherModel)
     func didUpdateForecast(weather: [ForecastWeatherModel])
     func showRetryAlert(error: String)
+    func didUpdateAdditionalInfo(weather: [AdditionalInfo])
 }
 
 final class Network {
@@ -35,9 +36,11 @@ final class Network {
         AF.request(url).responseDecodable(of: DailyWeather.self) { [weak self] response in
             switch response.result {
             case .success(let value):
-                if let viewModel = self?.mapper.mapDay(weather: value) {
-                    self?.delegate?.didUpdateWeather(weather: viewModel)
-                }
+                if let mainViewModel = self?.mapper.mapDay(weather: value),
+                   let infoViewModel = self?.mapper.mapInfo(weather: mainViewModel) {
+                    self?.delegate?.didUpdateWeather(weather: mainViewModel)
+                self?.delegate?.didUpdateAdditionalInfo(weather: infoViewModel)
+            }
             case .failure(let error):
                 print(error)
                 self?.delegate?.showRetryAlert(error: error.localizedDescription)
@@ -55,6 +58,7 @@ final class Network {
                 }
             case .failure(let error):
                 print(error)
+                self?.delegate?.showRetryAlert(error: error.localizedDescription)
             }
         }
     }

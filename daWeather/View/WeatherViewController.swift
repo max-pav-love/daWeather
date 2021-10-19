@@ -17,26 +17,10 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var table: UITableView!
     
+    var additionalInfo: [AdditionalInfo] = []
     var networkManager = Network()
     var locationManager = CLLocationManager()
     var viewModel = ViewModel()
-    
-    let additonal: [AdditionalInfo] = [AdditionalInfo(icon: "staroflife",
-                                                      title: "Ощущается как",
-                                                      description: "+14°C"),
-                                       AdditionalInfo(icon: "wind",
-                                                      title: "Скорость ветра",
-                                                      description: "13 м/с"),
-                                       AdditionalInfo(icon: "eye",
-                                                      title: "Видимость",
-                                                      description: "14 км"),
-                                       AdditionalInfo(icon: "line.3.horizontal.decrease.circle",
-                                                      title: "Давление",
-                                                      description: "11 k/Pa"),
-                                       
-                                       AdditionalInfo(icon: "drop",
-                                                      title: "Влажность",
-                                                      description: "67%")]
     
     // MARK: - ViewController lifecycle
     
@@ -69,12 +53,16 @@ class WeatherViewController: UIViewController {
         table.reloadData()
     }
     
+    func didUpdateAdditionalInfo(weather: [AdditionalInfo]) {
+        additionalInfo = weather
+        table.reloadData()
+    }
+    
     func showRetryAlert(error: String) {
         let alert = UIAlertController(title: "Ошибка",
                                       message: error,
                                       preferredStyle: .alert)
         let retryAction = UIAlertAction(title: "Повторить", style: .default) { [self] _ in
-            
             guard
                 let lon = self.viewModel.location?.coordinate.longitude,
                 let lat = self.viewModel.location?.coordinate.latitude
@@ -83,9 +71,7 @@ class WeatherViewController: UIViewController {
             }
             self.networkManager.fetchLocationForUrl(lon: lon, lat: lat)
         }
-        
         alert.addAction(retryAction)
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -102,7 +88,7 @@ class WeatherViewController: UIViewController {
         } else if section == 1 {
             return 1
         }
-        return additonal.count
+        return additionalInfo.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -140,7 +126,7 @@ class WeatherViewController: UIViewController {
             return collectionCell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: AdditionalCell.identifier, for: indexPath) as! AdditionalCell
-        cell.configure(data: additonal[indexPath.row])
+        cell.configure(data: (additionalInfo[indexPath.row]))
         return cell
     }
     

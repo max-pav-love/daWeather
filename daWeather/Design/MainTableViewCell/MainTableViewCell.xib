@@ -33,16 +33,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ty-Qb-arf">
-                                <rect key="frame" x="222" y="96" width="99" height="120"/>
+                                <rect key="frame" x="0.0" y="96" width="543" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="Dbc-EG-jwU"/>
+                                    <constraint firstAttribute="height" constant="130" id="Dbc-EG-jwU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="116"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1M-yc-T7u">
-                                <rect key="frame" x="251" y="226" width="41.5" height="50"/>
+                                <rect key="frame" x="251" y="236" width="41.5" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,7 +62,9 @@
                             <constraint firstItem="8Ty-Qb-arf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ELX-Mh-FJy" secondAttribute="bottom" constant="4" id="QTB-EL-0G9"/>
                             <constraint firstAttribute="bottom" secondItem="OBQ-ZG-nkd" secondAttribute="bottom" id="WFZ-z1-s7l"/>
                             <constraint firstItem="ef4-37-L0b" firstAttribute="top" secondItem="7L9-Kr-X5H" secondAttribute="top" id="g66-SG-DtZ"/>
+                            <constraint firstAttribute="trailing" secondItem="8Ty-Qb-arf" secondAttribute="trailing" id="jf3-RU-Oq2"/>
                             <constraint firstItem="N1M-yc-T7u" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8Ty-Qb-arf" secondAttribute="bottom" constant="4" id="tV1-Js-gYy"/>
+                            <constraint firstItem="8Ty-Qb-arf" firstAttribute="leading" secondItem="7L9-Kr-X5H" secondAttribute="leading" id="tY5-Sq-r9P"/>
                         </constraints>
                     </stackView>
                 </subviews>

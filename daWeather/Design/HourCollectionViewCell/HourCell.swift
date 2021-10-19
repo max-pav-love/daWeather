@@ -9,20 +9,14 @@ import UIKit
 
 class HourCell: UICollectionViewCell {
 
-    @IBOutlet private weak var timeLabel: UILabel?
-    @IBOutlet private weak var tempLabel: UILabel?
-    @IBOutlet private weak var weatherIcon: UIImageView?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
     static let identifier = "HourCell"
-    
     static func nib () -> UINib {
         return UINib(nibName: "HourCell", bundle: nil)
     }
+    
+    @IBOutlet private weak var timeLabel: UILabel?
+    @IBOutlet private weak var tempLabel: UILabel?
+    @IBOutlet private weak var weatherIcon: UIImageView?
     
     func configureCell(with hour: ForecastWeatherModel?) {
         self.timeLabel?.text = "\(hour!.date + ":00")"

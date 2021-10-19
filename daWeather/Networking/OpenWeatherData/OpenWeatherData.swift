@@ -56,13 +56,16 @@ struct DailyWeatherMain: Codable {
     let humidity: Double
     let temp_min: Double
     let temp_max: Double
+    let pressure: Int
 }
 
 struct DailyWeather: Codable {
+    let visibility: Int
     let main: DailyWeatherMain
     let name: String
     let id: Int
     let weather: [WeatherDescription]
+    let wind: Wind
 }
 
 struct WeatherDescription: Codable {
@@ -72,7 +75,5 @@ struct WeatherDescription: Codable {
 // MARK: - Wind
 struct Wind: Codable {
     let speed: Double
-    let deg: Int
-    let gust: Double
 }
 

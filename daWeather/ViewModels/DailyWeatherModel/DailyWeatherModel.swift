@@ -13,9 +13,12 @@ struct DailyWeatherModel {
     let description: String
     let maxTemp: String
     let minTemp: String
-    let feelsLike: String
-    let humidity: String
+    let feelsLike: Double
+    let humidity: Double
     let id: String
+    let visibility: Int
+    let pressure: Int
+    let windSpeed: Double
     var minMaxTemp: String {
         return "Макс. \(maxTemp), мин. \(minTemp)"
     }

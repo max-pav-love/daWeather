@@ -23,10 +23,10 @@ class AdditionalCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configure(data: AdditionalInfo) {
-            self.cellDescription.text = data.description
-            self.cellImage.image = UIImage(systemName: data.icon)
-            self.cellTitle.text = data.title
+    func configure(data: AdditionalInfo?) {
+        self.cellDescription.text = data?.description
+        self.cellImage.image = UIImage(systemName: data?.icon ?? "")
+        self.cellTitle.text = data?.title
     }
 
 }

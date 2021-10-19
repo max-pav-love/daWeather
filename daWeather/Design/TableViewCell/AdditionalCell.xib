@@ -16,13 +16,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ze-8x-j4y">
-                        <rect key="frame" x="240" y="11.5" width="60" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ze-8x-j4y">
+                        <rect key="frame" x="224" y="11.5" width="80" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="2ED-JP-prD"/>
+                            <constraint firstAttribute="width" constant="80" id="2ED-JP-prD"/>
                             <constraint firstAttribute="height" constant="21" id="tfO-nW-RD4"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -45,7 +45,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="2ze-8x-j4y" secondAttribute="trailing" constant="20" id="2q4-SF-g5k"/>
+                    <constraint firstAttribute="trailing" secondItem="2ze-8x-j4y" secondAttribute="trailing" constant="16" id="2q4-SF-g5k"/>
                     <constraint firstItem="2ze-8x-j4y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6zV-22-DrJ"/>
                     <constraint firstItem="4EC-KR-Jrw" firstAttribute="leading" secondItem="gYz-HA-hdc" secondAttribute="trailing" constant="8" id="TH4-Wg-I9r"/>
                     <constraint firstItem="gYz-HA-hdc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="VXX-Kk-KmA"/>
