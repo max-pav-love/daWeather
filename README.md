@@ -22,7 +22,7 @@
 - OpenWeatherMap API v2.5
 
 # Notes
-- While the application is loading data you will see the screen
+- While the application is loading data you will see the screen with activityIndicator only
 - Case with no internet connection was handled too
 
 # Authors
