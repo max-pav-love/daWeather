@@ -1,11 +1,7 @@
 # DaWeather ⛅️
 > Simple weather application in Swift for iOS 15.
 ## General Information
-- DaWeather ⛅️ will help you determine the current weather by your location
-
-## Technologies Used
-- Alamofire v5.4.4
-- OpenWeatherMap API v2.5
+- DaWeather ⛅️ will help you determine the current weather
 
 ## Features
 - Get weather by your current location
@@ -20,6 +16,10 @@
 ## Setup
 - [x] Go on [OpenWeatherMap](https://openweathermap.org/) to get your API-key
 - [x] Open daWeather ⛅️ project and paste your token here: `daWeather/Networking/URLs/OpenWeatherURLs.swift` in `apiKey` constant
+
+## Technologies Used
+- Alamofire v5.4.4
+- OpenWeatherMap API v2.5
 
 # Notes
 - While the application is loading data you will see the screen
