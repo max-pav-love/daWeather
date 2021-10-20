@@ -21,9 +21,9 @@
 - Alamofire v5.4.4
 - OpenWeatherMap API v2.5
 
-# Notes
+## Notes
 - While the application is loading data you will see the screen with activityIndicator only
 - Case with no internet connection was handled too
 
-# Authors
+## Authors
 - Maxim Pavlovich - [@max-pav-love](https://github.com/max-pav-love) - feel free to contact me!
