@@ -9,11 +9,11 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var currentTempLabel: UILabel!
-    @IBOutlet weak var minMaxLabel: UILabel!
-    @IBOutlet weak var conditionIcon: UIImageView!
+    @IBOutlet private weak var cityLabel: UILabel?
+    @IBOutlet private weak var descriptionLabel: UILabel?
+    @IBOutlet private weak var currentTempLabel: UILabel?
+    @IBOutlet private weak var minMaxLabel: UILabel?
+    @IBOutlet private weak var conditionIcon: UIImageView?
     
     static let identifier = "MainTableViewCell"
     
@@ -22,10 +22,10 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func configureMain(data: DailyWeatherModel?) {
-        self.descriptionLabel.text = data?.description
-        self.currentTempLabel.text = data?.temperature
-        self.conditionIcon.image = UIImage(systemName: data?.id ?? "cloud.fill")
-        self.cityLabel.text = data?.cityName
-        self.minMaxLabel.text = data?.minMaxTemp
+        self.descriptionLabel?.text = data?.description
+        self.currentTempLabel?.text = data?.temperature
+        self.conditionIcon?.image = UIImage(systemName: data?.id ?? "")
+        self.cityLabel?.text = data?.cityName
+        self.minMaxLabel?.text = data?.minMaxTemp
     }
 }

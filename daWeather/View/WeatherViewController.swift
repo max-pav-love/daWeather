@@ -14,8 +14,8 @@ class WeatherViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet private weak var backgroundImage: UIImageView?
+    @IBOutlet private weak var table: UITableView?
     
     var additionalInfo: [AdditionalInfo] = []
     var networkManager = Network()
@@ -29,11 +29,11 @@ class WeatherViewController: UIViewController {
         
         hideElements()
         
-        table.sectionHeaderTopPadding = 0
+        table?.sectionHeaderTopPadding = 0
         
-        table.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifier)
-        table.register(HourTableCell.nib(), forCellReuseIdentifier: HourTableCell.identifier)
-        table.register(AdditionalCell.nib(), forCellReuseIdentifier: AdditionalCell.identifier)
+        table?.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainTableViewCell.identifier)
+        table?.register(HourTableCell.nib(), forCellReuseIdentifier: HourTableCell.identifier)
+        table?.register(AdditionalCell.nib(), forCellReuseIdentifier: AdditionalCell.identifier)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -44,18 +44,18 @@ class WeatherViewController: UIViewController {
     
     func didUpdateWeather(weather: DailyWeatherModel) {
         viewModel.dailyModel = weather
-        table.reloadData()
+        table?.reloadData()
         showElements()
     }
     
     func didUpdateForecast(weather: [ForecastWeatherModel]) {
         viewModel.forecastModel = weather
-        table.reloadData()
+        table?.reloadData()
     }
     
     func didUpdateAdditionalInfo(weather: [AdditionalInfo]) {
         additionalInfo = weather
-        table.reloadData()
+        table?.reloadData()
     }
     
     func showRetryAlert(error: String) {
@@ -93,7 +93,7 @@ class WeatherViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 460
+            return 370
         } else if indexPath.section == 1 {
             return 128
         }
@@ -101,7 +101,7 @@ class WeatherViewController: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
+        if section == 2 {
             return .leastNonzeroMagnitude
         }
         return tableView.sectionHeaderHeight
@@ -140,7 +140,7 @@ class WeatherViewController: UIViewController {
             networkManager.fetchLocationForUrl(lon: lon, lat: lat)
             locationManager.stopUpdatingLocation()
             print("\(lon),\(lat)")
-            table.reloadData()
+            table?.reloadData()
         }
     }
     
@@ -163,13 +163,13 @@ class WeatherViewController: UIViewController {
     // MARK: - UI Methods
     
     func hideElements() {
-        table.isHidden = true
+        table?.isHidden = true
     }
     
     func showElements() {
         activityIndicator?.stopAnimating()
-        table.isHidden = false
-        backgroundImage.isHidden = false
+        table?.isHidden = false
+        backgroundImage?.isHidden = false
     }
     
 }

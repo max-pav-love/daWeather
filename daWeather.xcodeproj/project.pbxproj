@@ -22,6 +22,8 @@
 		150FAFEA2719C5DE00336403 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150FAFE92719C5DE00336403 /* Mapper.swift */; };
 		15B13C87271A1DB2006E95A0 /* HourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B13C85271A1DB2006E95A0 /* HourCell.swift */; };
 		15B13C88271A1DB3006E95A0 /* HourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B13C86271A1DB2006E95A0 /* HourCell.xib */; };
+		15B3D4F82720441700A180A3 /* ConditionSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3D4F72720441700A180A3 /* ConditionSwitcher.swift */; };
+		15B3D4FA272047C700A180A3 /* DataPresenters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B3D4F9272047C700A180A3 /* DataPresenters.swift */; };
 		15BC16BE271ED72A0007D043 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC16BC271ED72A0007D043 /* MainTableViewCell.swift */; };
 		15BC16BF271ED72A0007D043 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15BC16BD271ED72A0007D043 /* MainTableViewCell.xib */; };
 		15BC16C1271EEA700007D043 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC16C0271EEA700007D043 /* ViewModel.swift */; };
@@ -49,6 +51,8 @@
 		150FAFE92719C5DE00336403 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		15B13C85271A1DB2006E95A0 /* HourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourCell.swift; sourceTree = "<group>"; };
 		15B13C86271A1DB2006E95A0 /* HourCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourCell.xib; sourceTree = "<group>"; };
+		15B3D4F72720441700A180A3 /* ConditionSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSwitcher.swift; sourceTree = "<group>"; };
+		15B3D4F9272047C700A180A3 /* DataPresenters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPresenters.swift; sourceTree = "<group>"; };
 		15BC16BC271ED72A0007D043 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		15BC16BD271ED72A0007D043 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		15BC16C0271EEA700007D043 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -92,9 +96,9 @@
 			children = (
 				15B13C83271A1D7C006E95A0 /* Design */,
 				15B13C812719F013006E95A0 /* View */,
-				150FAFD82719B58900336403 /* Storyboards */,
 				150FAFD72719B56C00336403 /* ViewModels */,
 				150FAFD62719B52900336403 /* Networking */,
+				150FAFD82719B58900336403 /* Storyboards */,
 				150FAFBF2719B17C00336403 /* AppDelegate.swift */,
 				150FAFC12719B17C00336403 /* SceneDelegate.swift */,
 				150FAFC82719B18400336403 /* Assets.xcassets */,
@@ -117,7 +121,7 @@
 		150FAFD72719B56C00336403 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				15BC16C0271EEA700007D043 /* ViewModel.swift */,
+				15B3D4FB27204EC400A180A3 /* MainViewModel */,
 				15FA8129271DB86B007433AF /* AdditionalInfoModel */,
 				150FAFDB2719B5E400336403 /* ForecastWeatherModel */,
 				150FAFDA2719B5C300336403 /* DailyWeatherModel */,
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				150FAFE92719C5DE00336403 /* Mapper.swift */,
+				15B3D4F72720441700A180A3 /* ConditionSwitcher.swift */,
+				15B3D4F9272047C700A180A3 /* DataPresenters.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -208,6 +214,14 @@
 				15FA8130271DCC3B007433AF /* HourTableViewCell */,
 			);
 			path = HourCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		15B3D4FB27204EC400A180A3 /* MainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				15BC16C0271EEA700007D043 /* ViewModel.swift */,
+			);
+			path = MainViewModel;
 			sourceTree = "<group>";
 		};
 		15BC16BB271ED7110007D043 /* MainTableViewCell */ = {
@@ -328,11 +342,13 @@
 			files = (
 				150FAFE72719C23A00336403 /* OpenWeatherURLs.swift in Sources */,
 				150FAFE02719B73900336403 /* ForecastWeatherModel.swift in Sources */,
+				15B3D4F82720441700A180A3 /* ConditionSwitcher.swift in Sources */,
 				150FAFDD2719B62500336403 /* OpenWeatherData.swift in Sources */,
 				150FAFE22719B74500336403 /* DailyWeatherModel.swift in Sources */,
 				15BC16BE271ED72A0007D043 /* MainTableViewCell.swift in Sources */,
 				15FA812B271DB87F007433AF /* AdditionalInfoModel.swift in Sources */,
 				15BC16C1271EEA700007D043 /* ViewModel.swift in Sources */,
+				15B3D4FA272047C700A180A3 /* DataPresenters.swift in Sources */,
 				150FAFEA2719C5DE00336403 /* Mapper.swift in Sources */,
 				150FAFC42719B17C00336403 /* WeatherViewController.swift in Sources */,
 				15FA812E271DC022007433AF /* AdditionalCell.swift in Sources */,

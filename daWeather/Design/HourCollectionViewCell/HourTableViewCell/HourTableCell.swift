@@ -9,7 +9,7 @@ import UIKit
 
 class HourTableCell: UITableViewCell {
 
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView?
     
     var viewModel: [ForecastWeatherModel] = []
     static let identifier = "HourTableCell"
@@ -17,7 +17,7 @@ class HourTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collection.register(HourCell.nib(), forCellWithReuseIdentifier: HourCell.identifier)
+        collection?.register(HourCell.nib(), forCellWithReuseIdentifier: HourCell.identifier)
     }
     
     static func nib () -> UINib {
@@ -40,7 +40,7 @@ class HourTableCell: UITableViewCell {
     
     func configureCell(with hours: [ForecastWeatherModel]?) {
         viewModel = hours ?? []
-        collection.reloadData()
+        collection?.reloadData()
     }
     
 }

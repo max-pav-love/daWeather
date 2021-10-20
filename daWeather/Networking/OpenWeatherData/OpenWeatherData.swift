@@ -60,16 +60,16 @@ struct DailyWeatherMain: Codable {
 }
 
 struct DailyWeather: Codable {
-    let visibility: Int
     let main: DailyWeatherMain
     let name: String
-    let id: Int
     let weather: [WeatherDescription]
     let wind: Wind
+    let visibility: Int
 }
 
 struct WeatherDescription: Codable {
     let description: String
+    let id: Int
 }
 
 // MARK: - Wind

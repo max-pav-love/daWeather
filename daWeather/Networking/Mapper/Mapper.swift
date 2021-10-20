@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import Alamofire
 
 final class Mapper {
+    
+    //MARK: - Map main data
+    
     func mapDay(weather: DailyWeather) -> DailyWeatherModel {
         DailyWeatherModel(cityName: weather.name,
                           temperature: tempPresenter(for:weather.main.temp),
@@ -16,15 +20,17 @@ final class Mapper {
                           minTemp: tempPresenter(for: weather.main.temp_min),
                           feelsLike: weather.main.feels_like,
                           humidity: weather.main.humidity,
-                          id: getIconSystemName(by: weather.id),
+                          id: getIconSystemName(by: weather.weather[0].id),
                           visibility: weather.visibility,
                           pressure: weather.main.pressure,
                           windSpeed: weather.wind.speed)
     }
     
+    // MARK: - Map forecast data
+    
     func map(weather: Forecast) -> [ForecastWeatherModel] {
         var hours: [ForecastWeatherModel] = []
-        
+    
         for i in weather.list {
             if hours.count >= 8 {
                 return hours
@@ -40,6 +46,9 @@ final class Mapper {
         }
         return hours
     }
+    
+    // MARK: - Map additional data
+    
     func mapInfo(weather: DailyWeatherModel) -> [AdditionalInfo] {
         let additonal: [AdditionalInfo] = [AdditionalInfo(icon: "staroflife",
                                                           title: "Ощущается как",
@@ -57,70 +66,5 @@ final class Mapper {
                                                           title: "Видимость",
                                                           description: getVisibility(for: weather.visibility))]
         return additonal
-    }
-    
-    func tempPresenter (for temp: Double) -> String {
-        return String("\(Int(temp))°C")
-    }
-    
-    func getHumidity(for humidity: Double) -> String {
-        return String("\(Int(humidity)) %")
-    }
-    
-    func getPressure(for pressure: Int) -> String {
-        return String("\(Int((Double(exactly: pressure)! / 1.333)))" + " мм")
-    }
-    
-    func getVisibility(for visibility: Int ) -> String {
-        return String("\(Int(exactly: visibility)! / 1000)"+" км")
-    }
-    func getWindSpeed(for wind: Double) -> String {
-        return String ("\(wind.truncate(places: 1))" + " м/с")
-    }
-    
-    func getDateTime (date: Date?) -> String {
-        guard
-            let inputDate = date
-        else {
-            return ""
-        }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH"
-        return formatter.string(from: inputDate)
-    }
-    
-    private func getIconSystemName(by id: Int) -> String {
-        switch id {
-        case 200...202, 230...232:
-            return "cloud.bolt.rain.fill"
-        case 210...229:
-            return "cloud.bolt.fill"
-        case 300...321:
-            return "cloud.drizzle.fill"
-        case 500...501:
-            return "cloud.rain.fill"
-        case 502...531:
-            return "cloud.heavyrain.fill"
-        case 600...622:
-            return "cloud.snow.fill"
-        case 701...781:
-            return "cloud.fog.fill"
-        case 800:
-            return "sun.max.fill"
-        case 801...804:
-            return "cloud.bolt.fill"
-        default:
-            return "cloud.fill"
-        }
-    }
-}
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-}
-extension Double {
-    func truncate(places : Int)-> Double {
-        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
     }
 }

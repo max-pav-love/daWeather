@@ -42,7 +42,6 @@ final class Network {
                 self?.delegate?.didUpdateAdditionalInfo(weather: infoViewModel)
             }
             case .failure(let error):
-                print(error)
                 self?.delegate?.showRetryAlert(error: error.localizedDescription)
             }
         }
@@ -54,10 +53,8 @@ final class Network {
             case .success(let value):
                 if let viewModel = self?.mapper.map(weather: value) {
                     self?.delegate?.didUpdateForecast(weather: viewModel)
-                    print(viewModel)
                 }
             case .failure(let error):
-                print(error)
                 self?.delegate?.showRetryAlert(error: error.localizedDescription)
             }
         }

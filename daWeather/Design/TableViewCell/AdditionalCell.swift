@@ -9,9 +9,9 @@ import UIKit
 
 class AdditionalCell: UITableViewCell {
 
-    @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var cellDescription: UILabel!
+    @IBOutlet private weak var cellImage: UIImageView?
+    @IBOutlet private weak var cellTitle: UILabel?
+    @IBOutlet private weak var cellDescription: UILabel?
     
     static let identifier = "AdditionalCell"
     
@@ -24,9 +24,9 @@ class AdditionalCell: UITableViewCell {
     }
     
     func configure(data: AdditionalInfo?) {
-        self.cellDescription.text = data?.description
-        self.cellImage.image = UIImage(systemName: data?.icon ?? "")
-        self.cellTitle.text = data?.title
+        self.cellDescription?.text = data?.description
+        self.cellImage?.image = UIImage(systemName: data?.icon ?? "")
+        self.cellTitle?.text = data?.title
     }
 
 }
