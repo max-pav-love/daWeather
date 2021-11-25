@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 // MARK: - Forecast
 struct Forecast: Codable {
     let list: [List]

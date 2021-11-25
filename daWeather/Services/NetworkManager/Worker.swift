@@ -16,9 +16,7 @@ protocol WeatherManagerDelegate {
 }
 
 final class Network {
-    
     var delegate: WeatherManagerDelegate?
-    
     private let mapper = Mapper()
     
     // MARK: - Put coordinates in URL

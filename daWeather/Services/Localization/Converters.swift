@@ -30,26 +30,8 @@ func getWindSpeed(for wind: Double) -> String {
 }
 
 func getDateTime (date: Date?) -> String {
-    guard
-        let inputDate = date
-    else {
-        return ""
-    }
+    guard let inputDate = date else { return "" }
     let formatter = DateFormatter()
     formatter.dateFormat = "HH"
     return formatter.string(from: inputDate)
-}
-
-// MARK: - Extensions
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-}
-
-extension Double {
-    func truncate(places : Int)-> Double {
-        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
-    }
 }

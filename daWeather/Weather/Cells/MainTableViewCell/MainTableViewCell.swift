@@ -28,4 +28,5 @@ class MainTableViewCell: UITableViewCell {
         self.cityLabel?.text = data?.cityName
         self.minMaxLabel?.text = data?.minMaxTemp
     }
+    
 }

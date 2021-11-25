@@ -15,7 +15,7 @@ class AdditionalCell: UITableViewCell {
     
     static let identifier = "AdditionalCell"
     
-    static func nib () -> UINib {
+    static func nib() -> UINib {
         return UINib(nibName: "AdditionalCell", bundle: nil)
     }
     
